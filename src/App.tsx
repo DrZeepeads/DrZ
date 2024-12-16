@@ -5,14 +5,17 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { Chat, Sidebar, SignIn, WelcomeScreen } from './components/ClientComponents';
+import Chat from './components/Chat';
+import Sidebar from './components/Sidebar';
 import History from './components/History';
 import About from './components/About';
+import SignIn from './components/SignIn';
+import WelcomeScreen from './components/WelcomeScreen';
 import { AuthProvider } from './contexts/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const App: React.FC = () => {
+const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -39,71 +42,56 @@ const App: React.FC = () => {
     },
   });
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
   return (
     <AuthProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AnimatePresence>
-          {loading ? (
-            <motion.div
-              key="loader"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100vh',
-                backgroundColor: theme.palette.background.default,
-              }}
-            >
-              <CircularProgress color="primary" size={60} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="app"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Router>
-                <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-                  <Header toggleSidebar={toggleSidebar} />
-                  <Sidebar 
-                    open={sidebarOpen} 
-                    onClose={() => setSidebarOpen(false)} 
-                    darkMode={darkMode}
-                    toggleDarkMode={toggleDarkMode}
-                  />
-                  <Box component="main" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    <Switch>
-                      <Route exact path="/" component={WelcomeScreen} />
-                      <Route path="/chat" component={Chat} />
-                      <Route path="/history" component={History} />
-                      <Route path="/about" component={About} />
-                      <Route path="/signin" component={SignIn} />
-                    </Switch>
-                  </Box>
-                  <Footer />
-                </Box>
-              </Router>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <Router>
+          <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <Header toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+            <Sidebar 
+              open={sidebarOpen} 
+              onClose={() => setSidebarOpen(false)} 
+              darkMode={darkMode}
+              toggleDarkMode={() => setDarkMode(!darkMode)}
+            />
+            <Box component="main" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+              <AnimatePresence>
+                {loading ? (
+                  <motion.div
+                    key="loader"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      height: '100vh',
+                      backgroundColor: theme.palette.background.default,
+                    }}
+                  >
+                    <CircularProgress color="primary" size={60} />
+                  </motion.div>
+                ) : (
+                  <Switch>
+                    <Route exact path="/" component={WelcomeScreen} />
+                    <Route path="/chat" component={Chat} />
+                    <Route path="/history" component={History} />
+                    <Route path="/about" component={About} />
+                    <Route path="/signin" component={SignIn} />
+                  </Switch>
+                )}
+              </AnimatePresence>
+            </Box>
+            <Footer />
+          </Box>
+        </Router>
       </ThemeProvider>
     </AuthProvider>
   );
 };
 
 export default App;
+
