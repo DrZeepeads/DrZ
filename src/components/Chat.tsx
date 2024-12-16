@@ -17,7 +17,7 @@ interface Message {
   content: string;
 }
 
-export const Chat: React.FC = () => {
+const Chat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -161,6 +161,4 @@ export const Chat: React.FC = () => {
 };
 
 export default Chat;
-
-
 
