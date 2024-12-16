@@ -24,7 +24,7 @@ interface SidebarProps {
   toggleDarkMode: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ open, onClose, darkMode, toggleDarkMode }) => {
+const Sidebar: React.FC<SidebarProps> = ({ open, onClose, darkMode, toggleDarkMode }) => {
   const { user, signOut } = useAuth();
 
   return (
