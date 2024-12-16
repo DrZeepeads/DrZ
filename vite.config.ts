@@ -25,4 +25,3 @@ export default defineConfig({
     include: ['react', 'react-dom', 'react-router-dom', '@mui/material', '@emotion/react', '@emotion/styled'],
   },
 });
-
