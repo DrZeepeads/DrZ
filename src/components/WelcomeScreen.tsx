@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Typography, Button, Box, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export const WelcomeScreen: React.FC = () => {
+const WelcomeScreen: React.FC = () => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -46,4 +46,6 @@ export const WelcomeScreen: React.FC = () => {
     </motion.div>
   );
 };
+
+export default WelcomeScreen;
 
