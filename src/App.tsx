@@ -5,12 +5,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Chat from './components/Chat';
-import Sidebar from './components/Sidebar';
+import { Chat, Sidebar, SignIn, WelcomeScreen } from './components/ClientComponents';
 import History from './components/History';
 import About from './components/About';
-import SignIn from './components/SignIn';
-import WelcomeScreen from './components/WelcomeScreen';
 import { AuthProvider } from './contexts/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -110,4 +107,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
