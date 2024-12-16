@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PersonIcon from '@mui/icons-material/Person';
+import { useClientOnly } from '../utils/client-utils';
 
 interface Message {
   role: 'user' | 'bot';
@@ -50,6 +51,12 @@ const Chat: React.FC = () => {
       }
     }
   };
+
+  const isClient = useClientOnly(() => true);
+
+  if (!isClient) {
+    return null; // or a loading spinner
+  }
 
   if (!user) {
     return (
