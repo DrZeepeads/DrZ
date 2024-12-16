@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 
-export const SignIn: React.FC = () => {
+const SignIn: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signIn } = useAuth();
@@ -60,4 +60,6 @@ export const SignIn: React.FC = () => {
     </Box>
   );
 };
+
+export default SignIn;
 
