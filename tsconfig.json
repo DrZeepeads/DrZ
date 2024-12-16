@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                          // Use the latest ECMAScript features.
+    "module": "ESNext",                          // Use ESNext modules for modern environments.
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],    // Include DOM and ECMAScript features.
+    "jsx": "react-jsx",                          // Use React JSX transform (for React 17+).
+    "strict": true,                              // Enable all strict type-checking options.
+    "moduleResolution": "Node",                 // Resolve modules in Node.js style.
+    "resolveJsonModule": true,                   // Allow importing JSON files.
+    "isolatedModules": true,                     // Ensure each file can be transpiled individually.
+    "allowJs": false,                            // Disallow JavaScript files in the project.
+    "skipLibCheck": true,                        // Skip type checks for declaration files.
+    "esModuleInterop": true,                     // Allow interoperability between CommonJS and ES modules.
+    "allowSyntheticDefaultImports": true,       // Allow default imports from modules without default exports.
+    "forceConsistentCasingInFileNames": true,    // Enforce consistent file naming.
+    "noEmit": true,                              // Do not emit output files (useful for projects with bundlers).
+    "typeRoots": ["./node_modules/@types", "./src/types"], // Look for type declarations in these folders.
+    "baseUrl": "./",                             // Base URL for module resolution.
+    "paths": {
+      "@utils/*": ["src/utils/*"],               // Example of aliasing paths (adjust as needed).
+      "@components/*": ["src/components/*"]
+    }
+  },
+  "include": ["src"],                            // Include all files in the `src` folder.
+  "exclude": ["node_modules", "dist"]           // Exclude `node_modules` and `dist` from compilation.
+}
