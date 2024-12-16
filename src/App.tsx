@@ -15,7 +15,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const App = () => {
+const App: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -42,18 +42,26 @@ const App = () => {
     },
   });
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
     <AuthProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
           <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Header toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+            <Header toggleSidebar={toggleSidebar} />
             <Sidebar 
               open={sidebarOpen} 
               onClose={() => setSidebarOpen(false)} 
               darkMode={darkMode}
-              toggleDarkMode={() => setDarkMode(!darkMode)}
+              toggleDarkMode={toggleDarkMode}
             />
             <Box component="main" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
               <AnimatePresence>
